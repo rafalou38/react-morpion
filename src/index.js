@@ -1,6 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
+import emojiCompact from 'emoji.json/emoji-compact.json'
+
+
+function choose(choices) {
+  var index = Math.floor(Math.random() * choices.length);
+  return choices[index];
+}
 
 function Square(props) {
 	return (
@@ -68,10 +75,14 @@ class Game extends React.Component {
 				},
 			],
 			xIsNext: true,
-			X: "🌞",
-			O: "🌚",
 			stepNumber: 0,
 		};
+
+		const PlayerX = localStorage.getItem("PlayerX");
+		const PlayerO = localStorage.getItem("PlayerO");
+		console.log(PlayerX, PlayerO);
+		this.state.O = PlayerO ? PlayerO : "O";
+		this.state.X = PlayerX ? PlayerX : "X";
 	}
 	getNext() {
 		return this.state.xIsNext ? "X" : "O";
@@ -148,32 +159,44 @@ class Game extends React.Component {
 					/>
 				</div>
 				<div className="game-info">
-					<div>{status}</div>
+					<div id="status">{status}</div>
 					<ol>{moves}</ol>
 				</div>
 				<div className="players">
 					<input
 						type="text"
 						placeholder="X"
-						onChange={(text) =>
+						onChange={(text) => {
 							this.setState({
 								X: text.target.value ? text.target.value : "X",
-							})
-						}
+							});
+							localStorage.setItem("PlayerX", text.target.value);
+						}}
 						maxLength="2"
-						defaultValue="🌞"
+						value={this.state.X}
+						defaultValue={this.state.X}
 					/>
 					<input
 						type="text"
 						placeholder="O"
-						onChange={(text) =>
+						onChange={(text) => {
 							this.setState({
 								O: text.target.value ? text.target.value : "O",
-							})
-						}
-						defaultValue="🌚"
+							});
+							localStorage.setItem("PlayerO", text.target.value);
+						}}
+						defaultValue={this.state.O}
+						value={this.state.O}
 						maxLength="2"
 					/>
+					<div className="shuffle-container">
+						<button className="shuffle-btn" onClick={_=>{
+							this.setState({
+								X: choose(emojiCompact),
+								O: choose(emojiCompact)
+							})
+						}}>🎲</button>
+					</div>
 				</div>
 			</div>
 		);

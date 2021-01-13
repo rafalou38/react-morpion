@@ -1,17 +1,57 @@
+html {
+	--scale-factor: 1;
+	background-color: #202222;
+}
+@media (max-width: 3500px) {
+	html {
+		--scale-factor: 4.5;
+	}
+}
+@media (max-width: 3000px) {
+	html {
+		--scale-factor: 4;
+	}
+}
+@media (max-width: 2500px) {
+	html {
+		--scale-factor: 3.5;
+	}
+}
+@media (max-width: 2000px) {
+	html {
+		--scale-factor: 3;
+	}
+}
+@media (max-width: 1500px) {
+	html {
+		--scale-factor: 2.5;
+	}
+}
+@media (max-width: 1000px) {
+	html {
+		--scale-factor: 2;
+	}
+}
+
+@media (max-width: 500) {
+	html {
+		--scale-factor: 1.5;
+	}
+}
+
 body {
-	font: 14px "Century Gothic", Futura, sans-serif;
+	font: calc(14px * var(--scale-factor)) "Century Gothic", Futura, sans-serif;
 	margin: 0;
 	min-height: 100vh;
-	background-color: #141420;
 	color: white;
 	text-align: center;
 }
-h1{
+h1 {
 	width: 100%;
 }
 ol,
 ul {
-	padding-left: 30px;
+	padding-left: calc(30px * var(--scale-factor));
 	width: max-content;
 }
 li {
@@ -19,20 +59,21 @@ li {
 	display: flex;
 }
 li::before {
-	width: 2px;
+	width: calc(2px * var(--scale-factor));
 	content: "";
 	display: block;
 	background-color: #494949;
-	margin-right: 2px;
+	margin-right: calc(2px * var(--scale-factor));
 }
 li > button {
 	width: 100%;
+	font-size: calc(13px * var(--scale-factor));
 }
 li#current::before {
 	background-color: #6c6c6c;
-	width: 4px;
-	margin-left: -1px;
-	margin-right: 1px;
+	width: calc(4px * var(--scale-factor));
+	margin-left: calc(-1px * var(--scale-factor));
+	margin-right: calc(1px * var(--scale-factor));
 	content: "1";
 	content: "";
 }
@@ -43,23 +84,26 @@ li#current::before {
 }
 
 .status {
-	margin-bottom: 10px;
+	margin-bottom: calc(10px * var(--scale-factor));
 }
 
 .square {
-	background: #fff;
-	border: 1px solid #999;
+	background: #202222;
+	border: calc(1px * var(--scale-factor)) solid #837f79;
 	float: left;
-	font-size: 24px;
+	font-size: calc(24px * var(--scale-factor));
 	font-weight: bold;
-	line-height: 34px;
-	height: 34px;
-	margin-right: -1px;
-	margin-top: -1px;
+	line-height: calc(34px * var(--scale-factor));
+	height: calc(34px * var(--scale-factor));
+	margin-right: calc(-1px * var(--scale-factor));
+	margin-top: calc(-1px * var(--scale-factor));
 	padding: 0;
 	text-align: center;
-	width: 34px;
+	width: calc(34px * var(--scale-factor));
 	transition: transform 0.1s ease-in;
+	color: white;
+
+	overflow: hidden;
 }
 .square.empty:hover {
 	transform: scale(1.05);
@@ -79,26 +123,46 @@ li#current::before {
 .game {
 	display: flex;
 	flex-direction: row;
-	width: max-content;
 	align-items: center;
 	justify-content: center;
 	flex-wrap: wrap;
+	padding-bottom: calc(10px * var(--scale-factor));
 }
 
 .game-info {
-	margin-left: 20px;
+	margin-left: calc(20px * var(--scale-factor));
 }
 
 #root {
-	display: grid;
-	place-items: center;
+	display: flex;
 	height: 100vh;
+	flex-direction: column;
 }
 .players {
 	width: 100%;
 }
+button,
 input {
-	margin-top: 10px;
-	width: 20px;
-	height: 20px;
+	background-color: #242626;
+	color: white;
+	border: calc(0.5px * var(--scale-factor)) #202222 solid;
+}
+input {
+	margin-top: calc(10px * var(--scale-factor));
+	width: calc(40px * var(--scale-factor));
+	height: calc(20px * var(--scale-factor));
+	text-align: center;
+	font-size: calc(13px * var(--scale-factor));
+}
+.shuffle-btn {
+	height: calc(20px * var(--scale-factor));
+	width: calc(83px * var(--scale-factor));
+	margin: 0;
+	font-size: calc(13px * var(--scale-factor));
+}
+.shuffle-container {
+	height: calc(20px * var(--scale-factor));
+}
+.status {
+	width: calc(130px * var(--scale-factor));
 }
