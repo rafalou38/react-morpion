@@ -1,62 +1,104 @@
 body {
-  font: 14px "Century Gothic", Futura, sans-serif;
-  margin: 0;
-  min-height: 100vh;
-  background-color: #141420;
-  color: white;
-  text-align: center;
+	font: 14px "Century Gothic", Futura, sans-serif;
+	margin: 0;
+	min-height: 100vh;
+	background-color: #141420;
+	color: white;
+	text-align: center;
 }
-
+h1{
+	width: 100%;
+}
 ol,
 ul {
-  padding-left: 30px;
+	padding-left: 30px;
+	width: max-content;
 }
-
+li {
+	list-style: none;
+	display: flex;
+}
+li::before {
+	width: 2px;
+	content: "";
+	display: block;
+	background-color: #494949;
+	margin-right: 2px;
+}
+li > button {
+	width: 100%;
+}
+li#current::before {
+	background-color: #6c6c6c;
+	width: 4px;
+	margin-left: -1px;
+	margin-right: 1px;
+	content: "1";
+	content: "";
+}
 .board-row:after {
-  clear: both;
-  content: "";
-  display: table;
+	clear: both;
+	content: "";
+	display: table;
 }
 
 .status {
-  margin-bottom: 10px;
+	margin-bottom: 10px;
 }
 
 .square {
-  background: #fff;
-  border: 1px solid #999;
-  float: left;
-  font-size: 24px;
-  font-weight: bold;
-  line-height: 34px;
-  height: 34px;
-  margin-right: -1px;
-  margin-top: -1px;
-  padding: 0;
-  text-align: center;
-  width: 34px;
+	background: #fff;
+	border: 1px solid #999;
+	float: left;
+	font-size: 24px;
+	font-weight: bold;
+	line-height: 34px;
+	height: 34px;
+	margin-right: -1px;
+	margin-top: -1px;
+	padding: 0;
+	text-align: center;
+	width: 34px;
+	transition: transform 0.1s ease-in;
 }
-
+.square.empty:hover {
+	transform: scale(1.05);
+}
+.square.winer {
+	background-color: rebeccapurple;
+	border: none;
+}
 .square:focus {
-  outline: none;
+	outline: none;
 }
 
 .kbd-navigation .square:focus {
-  background: #ddd;
+	background: #ddd;
 }
 
 .game {
-  display: flex;
-  flex-direction: row;
-  width: max-content;
+	display: flex;
+	flex-direction: row;
+	width: max-content;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
 }
 
 .game-info {
-  margin-left: 20px;
+	margin-left: 20px;
 }
 
 #root {
- display: grid;
- place-items: center;
- height: 100vh;
+	display: grid;
+	place-items: center;
+	height: 100vh;
+}
+.players {
+	width: 100%;
+}
+input {
+	margin-top: 10px;
+	width: 20px;
+	height: 20px;
 }
